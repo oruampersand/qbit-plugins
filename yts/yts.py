@@ -79,7 +79,7 @@ class yts_response:
     status_message: str
     data: yts_data
 
-    # @meta also exists, but a) doesn't interest us and b) Python doesn't accept @ in attribute names
+    # @meta also exists, but a) doesn't interest us and b) Python doesn't accept @ in attribute names  # noqa: E501
     def __post_init__(self):
         self.data = yts_data(**self.data)
 
@@ -93,7 +93,7 @@ class yts(object):
     `name`: The name of the search engine, spaces and special characters are allowed here.
     `supported_categories`: What categories are supported by the search engine and their corresponding id,
     possible categories are ('all', 'anime', 'books', 'games', 'movies', 'music', 'pictures', 'software', 'tv').
-    """
+    """  # noqa: E501
 
     url = "https://yts.bz/"
     api_url = "https://yts.bz/api/v2/list_movies.json?"
@@ -110,7 +110,7 @@ class yts(object):
 
         @param `what`: a string with the search tokens, already escaped (e.g. "Ubuntu+Linux")
         @param `cat`: the name of a search category in ('all', 'anime', 'books', 'games', 'movies', 'music', 'pictures', 'software', 'tv')
-        """
+        """  # noqa: E501
         search_url = self.api_url
 
         what = unquote(what)
@@ -133,7 +133,7 @@ class yts(object):
             if "quality" in search_params:
                 search_params[
                     "quality"
-                ] += f".{search_codec}"  # only add if quality also defined, will be checked separately anyways
+                ] += f".{search_codec}"  # only add if quality also defined, will be checked separately anyways  # noqa: E501
             what = re.sub(codec_rstring, "", what).strip()
 
         # rating tagging
@@ -186,7 +186,7 @@ class yts(object):
                         continue
                     formatTorrent = {
                         "link": torrent.url,
-                        "name": f"{movie.title_long} [{torrent.quality}] [{torrent.video_codec}] [{torrent.type}] [{torrent.audio_channels}] [YTS]",
+                        "name": f"{movie.title_long} [{torrent.quality}] [{torrent.video_codec}] [{torrent.type}] [{torrent.audio_channels}] [YTS]",  # noqa: E501
                         "size": torrent.size,
                         "seeds": str(torrent.seeds),
                         "leech": str(torrent.peers),
